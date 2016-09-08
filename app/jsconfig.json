@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": false
+    },
+    "excludes": [
+        "node_modules",
+        "dist"
+    ]
+}
