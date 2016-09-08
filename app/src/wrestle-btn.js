@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 
 
-
 class WrestleBtn extends React.Component {
 
     constructor() {
@@ -12,7 +11,7 @@ class WrestleBtn extends React.Component {
     handleClick() {
         $.ajax({
             url: 'http://localhost:3001/results',
-
+        
         });
     }
 
