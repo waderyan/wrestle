@@ -9,9 +9,17 @@ class WrestleBtn extends React.Component {
     }
 
     handleClick() {
+        console.log('handleClick');
         $.ajax({
             url: 'http://localhost:3001/results',
-        
+            method: 'GET',
+            dataType: 'json',
+            success: () => {
+                console.log('success');
+            },
+            error: () => {
+                console.log('error');
+            }
         });
     }
 

@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var APP_ROOT = 'src';
+var APP_ROOT = '';
 
 var entries = [
      './' + APP_ROOT + '/client',
