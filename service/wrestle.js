@@ -1,5 +1,5 @@
 var random = require('./random');
-var promise = require('promise');
+var Promise = require('promise');
 
 /**
  * Return the winner of the wrestling match. 
@@ -27,7 +27,11 @@ function runMatch(xSchool, xFactors, ySchool, yFactors) {
     return runMatch(xSchool, xFactors, ySchool, yFactors);
   }
 
-  return xKarma > yKarma ? xSchool : ySchool;
+  return return new Promise(function(resolve, reject) {
+    resolve({
+      winner: xKarma > yKarma ? xSchool : ySchool
+    });
+  });
 }
 
 module.exports = {
