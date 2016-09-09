@@ -3,6 +3,10 @@ var bodyParser = require('body-parser');
 var wrestle = require('./wrestle');
 
 var server = express();
+
+server.use(bodyParser.urlencoded({
+    extended: true
+}));
 server.use(bodyParser.json());
 
 server.use(function (req, res, next) {
@@ -13,9 +17,15 @@ server.use(function (req, res, next) {
   next();
 });
 
-server.get('/wrestle', function(req, res, next) {
-  // Make a call to wrestling algorithm
-  return wrestle.runMatch()
+server.post('/wrestle', function(req, res, next) {
+  var data = req.body;
+  var xSchool = data.xSchool;
+  var ySchool = data.ySchool;
+
+  return wrestle.runMatch(xSchool.name, xSchool.factors, ySchool.name, ySchool.factors)
+    .then(function(winner) {
+      res.send(winner);
+    });
 });
 
 // Start listening

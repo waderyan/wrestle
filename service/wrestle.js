@@ -1,33 +1,35 @@
 var random = require('./random');
 var Promise = require('promise');
 
+function getKarma(factors) {
+    var karma = 0;
+
+    Object.keys(factors).forEach(function(key) {
+      karma += random.zeroToTen() * factors[key];
+    });
+
+    return karma;
+}
+
 /**
  * Return the winner of the wrestling match. 
  * 
  * @param {string} xSchool - x school.  
- * @param {array} xFactors - factors determining if X school will win. 
+ * @param {objects} xFactors - factors determining if X school will win. 
  * @param {string} ySchool - y school.
- * @param {array} yFactors - factors determining if Y school will win. 
+ * @param {objects} yFactors - factors determining if Y school will win. 
  * 
  * @return {string} xSchool or ySchool
  */
 function runMatch(xSchool, xFactors, ySchool, yFactors) {
-  var xKarma = 0;
-  var yKarma = 0;
-
-  xFactors.forEach(function(factor) {
-    xKarma += (random.zeroToTen() * factor);
-  });
-
-  yFactors.forEach(function(factor) {
-    yKarma += (random.zeroToTen() * factor);
-  });
+  var xKarma = getKarma(xFactors);
+  var yKarma = getKarma(yFactors);
 
   if (xKarma == yKarma) {
     return runMatch(xSchool, xFactors, ySchool, yFactors);
   }
 
-  return return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve, reject) {
     resolve({
       winner: xKarma > yKarma ? xSchool : ySchool
     });
