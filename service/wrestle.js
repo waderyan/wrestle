@@ -1,4 +1,5 @@
-var random = require('random');
+var random = require('./random');
+var promise = require('promise');
 
 /**
  * Return the winner of the wrestling match. 

@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var wrestle = require('wrestle');
+var wrestle = require('./wrestle');
 
 var server = express();
 server.use(bodyParser.json());
@@ -13,11 +13,9 @@ server.use(function (req, res, next) {
   next();
 });
 
-server.get('/results', function(req, res, next) {
+server.get('/wrestle', function(req, res, next) {
   // Make a call to wrestling algorithm
-  return res.send({
-    winner: 'Utah'
-  });
+  return wrestle.runMatch()
 });
 
 // Start listening

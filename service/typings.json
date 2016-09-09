@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "promise": "registry:dt/promise#7.1.1+20160602154553"
+  }
+}

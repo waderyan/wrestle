@@ -11,8 +11,8 @@ class WrestleBtn extends React.Component {
     handleClick() {
         console.log('handleClick');
         $.ajax({
-            url: 'http://localhost:3001/results',
-            method: 'GET',
+            url: 'http://localhost:3001/wrestle',
+            method: 'POST',
             dataType: 'json',
             success: () => {
                 console.log('success');
