@@ -57,7 +57,8 @@ class App extends React.Component {
      * @param {string} winningSchool - school that won. 
      */
     updateWinRecord(winningSchool) {
-        for (var i = 0; i < this.state.schools.length; i++) {
+        for (let i = 0; i < this.state.schools.length; i++) {
+            let school = this.state.schools[i];
             if (school.name == winningSchool) {
                 school.wins++;
             }

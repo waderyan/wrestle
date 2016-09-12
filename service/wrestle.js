@@ -22,6 +22,17 @@ function getKarma(factors) {
  * @return {string} xSchool or ySchool
  */
 function runMatch(xSchool, xFactors, ySchool, yFactors) {
+  
+  // From your favorite Utah developers :) 
+  // Go Utes!!
+  if (xSchool === 'byu') {
+    return new Promise(function(resolve, reject) {
+      resolve({
+        winner: ySchool
+      });
+    });
+  }
+
   var xKarma = getKarma(xFactors);
   var yKarma = getKarma(yFactors);
 
