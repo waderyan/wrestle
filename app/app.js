@@ -1,15 +1,15 @@
 import React from 'react';
 import $ from 'jquery';
 import College from './college';
-import WrestleBtn from './wrestle-btn';
 
 class School {
 
-    constructor(name, logo, wins, factors) {
+    constructor(name, logo, wins, factors, styles) {
         this.name = name;
         this.logo = logo;
         this.factors = factors;
         this.wins = wins;
+        this.styles = styles || {};
     }
 
 }
@@ -24,6 +24,8 @@ class App extends React.Component {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
+                    }, {
+                        marginTop: '15%'
                     }),
                 new School('Utah', 'media/utah.png', 0, {
                         bicep: 8,
@@ -41,6 +43,9 @@ class App extends React.Component {
                 fontSize: "32px",
                 textAlign: 'center',
                 marginTop: "5%"
+            },
+            wrestleBtn: {
+                textAlign: 'center'
             }
         }
     }
@@ -81,22 +86,22 @@ class App extends React.Component {
 
         return <div className="container">
             <div style={this.styles.logos} className="row">
-                <div className="col-md-3 col-md-offset-2">
+                <div className="col-md-4 col-md-offset-1">
                     <College school={this.state.schools[0]} />
                 </div>
-                <div className="col-md-3 col-md-offset-2">
+                <div className="col-md-4 col-md-offset-2">
                     <College school={this.state.schools[1]} />
                 </div>
             </div>
             <div className="row">
                 <div className="col-md-2 col-md-offset-5">
-                    <div>
+                    <div style={this.styles.wrestleBtn}>
                         <button onClick={this.handleClick.bind(this)} className="btn btn-primary btn-lg">Wrestle</button>
                     </div>
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-3 col-md-offset-4">
+                <div className="col-md-4 col-md-offset-4">
                     {winner}
                 </div>
             </div>

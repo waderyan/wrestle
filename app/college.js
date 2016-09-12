@@ -4,6 +4,14 @@ class College extends React.Component {
 
     constructor() {
         super();
+        this.styles = {
+            schoolName: {
+                fontSize: '32px'
+            },
+            wins: {
+                fontSize: '24px'
+            }
+        }
         
     }
 
@@ -13,16 +21,11 @@ class College extends React.Component {
         return <div>
             <div className="row">
                 <div className="col-md-12">
-                    <h2>{school.name}</h2>
+                    <p style={this.styles.wins}>Wins: {school.wins}</p>
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-12">
-                    <p>Wins: {school.wins}</p>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
+                <div style={school.styles} className="col-md-12">
                     <img width="100%" src={school.logo} />
                 </div>
             </div>

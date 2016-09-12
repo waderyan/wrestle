@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "node service/server.js"
+    "dev": "node service/server.js",
+    "start-demo": "node service/service.js && webpack-dev-server --config app/webpack.config.js --open"
   },
   "author": "waderyan",
   "license": "MIT",
