@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import College from './college';
+import _ from 'lodash';
 
 class School {
 
@@ -28,9 +29,9 @@ class App extends React.Component {
                         marginTop: '15%'
                     }),
                 new School('Utah', 'media/utah.png', 0, {
-                        bicep: 8,
-                        wrist: 5,
-                        savvy: 6
+                        bicep: 7,
+                        wrist: 4,
+                        savvy: 8
                     })
             ]
         }
@@ -50,15 +51,27 @@ class App extends React.Component {
         }
     }
 
-    setWinner(winner) {
-        this.state.schools.forEach(function(school) {
-            if (school.name == winner) {
+    /**
+     * Updates the win record for the winning school. 
+     * 
+     * @param {string} winningSchool - school that won. 
+     */
+    updateWinRecord(winningSchool) {
+        for (var i = 0; i < this.state.schools.length; i++) {
+            if (school.name == winningSchool) {
                 school.wins++;
             }
-        });
+        }
+
+        // _.forEach(this.state.schools, (school) => {
+        //     if (school.name == winningSchool) {
+        //         school.wins++;
+        //     }
+        // });
+
         this.setState({
             schools: this.state.schools,
-            winner: winner
+            winner: winningSchool
         });
     }
 
@@ -74,7 +87,8 @@ class App extends React.Component {
                 ySchool: this.state.schools[1]
             },
             success: (data) => {
-                this.setWinner(data.winner);
+                console.log('The winner is ' + data.winner);
+                this.updateWinRecord(data.winner);
             }
         });
     }
