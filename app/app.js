@@ -21,14 +21,14 @@ class App extends React.Component {
         super();
         this.state = {
             schools: [
-                new School('BYU', 'media/byu.png', 0, {
+                new School('byu', 'media/byu.png', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
                     }, {
                         marginTop: '15%'
                     }),
-                new School('Utah', 'media/utah.png', 0, {
+                new School('utah', 'media/utah.png', 0, {
                         bicep: 7,
                         wrist: 4,
                         savvy: 8
