@@ -20,11 +20,6 @@ class College extends React.Component {
 
         return <div>
             <div className="row">
-                <div className="col-md-12">
-                    <p style={this.styles.wins}>Wins: {school.wins}</p>
-                </div>
-            </div>
-            <div className="row">
                 <div style={school.styles} className="col-md-12">
                     <img width="100%" src={school.logo} />
                 </div>

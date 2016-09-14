@@ -60,11 +60,12 @@ class App extends React.Component {
      */
     updateWinRecord(winningSchool) {
 
-        lodash.forEach(this.state.schools, (school) => {
-            if (school.name === winningSchool) {
+        for (let i = 0; i < this.state.schools.length; i++) {
+            let school = this.state.schools[i];
+            if (winningSchool === school.name) {
                 school.wins++;
             }
-        });
+        }
 
         this.setState({
             schools: this.state.schools,
