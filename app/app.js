@@ -7,9 +7,10 @@ import lodash from 'lodash';
 
 class School {
 
-    constructor(name, logo, wins, factors, styles) {
+    constructor(name, logo, animation, wins, factors, styles) {
         this.name = name;
         this.logo = logo;
+        this.animation = animation;
         this.factors = factors;
         this.wins = wins;
         this.styles = styles || {};
@@ -23,14 +24,14 @@ class App extends React.Component {
         super();
         this.state = {
             schools: [
-                new School('byu', 'media/byu.png', 0, {
+                new School('byu', 'media/byu.png', 'media/wrestling_byu_wins.gif', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
                     }, {
                         marginTop: '15%'
                     }),
-                new School('utah', 'media/utah.png', 0, {
+                new School('utah', 'media/utah.png', 'media/wrestling_utah_wins.gif', 0, {
                         bicep: 7,
                         wrist: 4,
                         savvy: 8
@@ -49,6 +50,9 @@ class App extends React.Component {
             },
             wrestleBtn: {
                 textAlign: 'center'
+            },
+            wrestling: {
+                marginTop: '5%'
             }
         }
     }
@@ -58,19 +62,40 @@ class App extends React.Component {
      * 
      * @param {string} winningSchool - school that won. 
      */
-    updateWinRecord(winningSchool) {
+    updateWinRecord(winner) {
+        winner.wins++;
+
+        this.setState({
+            schools: this.state.schools,
+            wrestling: false,
+            winner: winner
+        });
+    }
+
+    /**
+     * Starts the wrestling animation. 
+     * 
+     * @param {string} winningSchool - school that won. 
+     */
+    startWrestling(winningSchool) {
+        let winner;
 
         for (let i = 0; i < this.state.schools.length; i++) {
             let school = this.state.schools[i];
             if (winningSchool === school.name) {
-                school.wins++;
+                winner = school;
             }
         }
 
         this.setState({
             schools: this.state.schools,
-            winner: winningSchool
+            wrestling: true,
+            winner: winner
         });
+
+        setTimeout(() => {
+            this.updateWinRecord(winner);
+        }, 3000);
     }
 
     handleClick() {
@@ -85,16 +110,22 @@ class App extends React.Component {
                 ySchool: this.state.schools[1]
             },
             success: (data) => {
-                console.log('The winner is ' + data.winner);
-                this.updateWinRecord(data.winner);
+                this.startWrestling(data.winner);
             }
         });
     }
 
     render() {
-        if (this.state.winner) {
-            var winner = <p style={this.styles.winner}>{capitalize(this.state.winner)} Wins!</p>;
-        } 
+        let s = this.state;
+
+        if (s.winner) {
+            if (s.wrestling) {
+                var wrestling = <img width="100%" src={this.state.winner.animation + '?' + new Date().getTime()} />;
+            }
+            if (!s.wrestling) {
+                var winner = <p style={this.styles.winner}>{capitalize(this.state.winner.name)} Wins!</p>;
+            } 
+        }
 
         return <div className="container">
             <div style={this.styles.logos} className="row">
@@ -110,6 +141,11 @@ class App extends React.Component {
                     <div style={this.styles.wrestleBtn}>
                         <button onClick={this.handleClick.bind(this)} className="btn btn-primary btn-lg">Arm Wrestle</button>
                     </div>
+                </div>
+            </div>
+            <div className="row">
+                <div style={this.styles.wrestling} className="col-md-6 col-md-offset-3">
+                    {wrestling}
                 </div>
             </div>
             <div className="row">
