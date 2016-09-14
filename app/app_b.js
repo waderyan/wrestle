@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import College from './college';
-import lodash from 'lodash';
+import _ from 'lodash';
 
 
 
@@ -59,9 +59,8 @@ class App extends React.Component {
      * @param {string} winningSchool - school that won. 
      */
     updateWinRecord(winningSchool) {
-
-        lodash.forEach(this.state.schools, (school) => {
-            if (school.name === winningSchool) {
+        _.forEach(this.state.schools, (school) => {
+            if (school.name == winningSchool) {
                 school.wins++;
             }
         });
