@@ -40,8 +40,8 @@ class App extends React.Component {
         }
         this.styles = {
             logos: {
-                marginTop: "5%",
-                marginBottom: "5%"
+                marginTop: "2%",
+                marginBottom: "2%"
             },
             winner: {
                 fontSize: "32px",
@@ -130,10 +130,10 @@ class App extends React.Component {
         return <div className="container">
             <div style={this.styles.logos} className="row">
                 <div className="col-md-4 col-md-offset-1">
-                    <College school={this.state.schools[0]} />
+                    <College school={this.state.schools[1]} />
                 </div>
                 <div className="col-md-4 col-md-offset-2">
-                    <College school={this.state.schools[1]} />
+                    <College school={this.state.schools[0]} />
                 </div>
             </div>
             <div className="row">
