@@ -80,12 +80,11 @@ class App extends React.Component {
     startWrestling(winningSchool) {
         let winner;
 
-        for (let i = 0; i < this.state.schools.length; i++) {
-            let school = this.state.schools[i];
+        lodash.forEach(this.state.schools, (school) => {
             if (winningSchool === school.name) {
                 winner = school;
             }
-        }
+        });
 
         this.setState({
             schools: this.state.schools,
