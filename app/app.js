@@ -32,9 +32,9 @@ class App extends React.Component {
                         marginTop: '15%'
                     }),
                 new School('utah', 'media/utah.png', 'media/wrestling_utah_wins.gif', 0, {
-                        bicep: 7,
-                        wrist: 4,
-                        savvy: 8
+                        bicep: 8,
+                        wrist: 5,
+                        savvy: 6
                     })
             ]
         }
