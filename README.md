@@ -1,6 +1,6 @@
 # Demo for Utah JS Conference
 
-Start the frontend and backend with
+Run the app with the following command:
 
 ```
 ./start.sh
