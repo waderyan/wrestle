@@ -1,11 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
-import College from './college';
+import Franchise from './franchise';
 import lodash from 'lodash';
 
 
 
-class School {
+class FranchiseData {
 
     constructor(name, logo, animation, wins, factors, styles) {
         this.name = name;
@@ -23,18 +23,22 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            schools: [
-                new School('byu', 'media/byu.png', 'media/wrestling_byu_wins.gif', 0, {
+            franchises: [
+                new FranchiseData('Star Wars', 'media/star_wars.png', 'media/wrestling_byu_wins.gif', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
                     }, {
-                        marginTop: '15%'
+                        marginTop: '15%',
+                        marginBottom: '15%'
                     }),
-                new School('utah', 'media/utah.png', 'media/wrestling_utah_wins.gif', 0, {
+                new FranchiseData('Star Trek', 'media/star_trek.jpg', 'media/wrestling_utah_wins.gif', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
+                    }, {
+                        marginTop: '15%',
+                        marginBottom: '15%'
                     })
             ]
         }
@@ -66,7 +70,7 @@ class App extends React.Component {
         winner.wins++;
 
         this.setState({
-            schools: this.state.schools,
+            franchises: this.state.franchises,
             wrestling: false,
             winner: winner
         });
@@ -75,19 +79,26 @@ class App extends React.Component {
     /**
      * Starts the wrestling animation. 
      * 
-     * @param {string} winningSchool - school that won. 
+     * @param {string} winningFranchise - franchise that won. 
      */
-    startWrestling(winningSchool) {
+    wrestle(winningFranchise) {
         let winner;
 
-        lodash.forEach(this.state.schools, (school) => {
-            if (winningSchool === school.name) {
-                winner = school;
+        for (var i = 0; i < this.state.franchises.length; i++) {
+            var franchise = this.state.franchises[i];
+            if (winningFranchise == franchise.name) {
+                winner = franchise;
             }
-        });
+        }
+
+        // lodash.forEach(this.state.franchises, (franchise) => {
+        //     if (winningFranchise === franchise.name) {
+        //         winner = franchise;
+        //     }
+        // });
 
         this.setState({
-            schools: this.state.schools,
+            franchises: this.state.franchises,
             wrestling: true,
             winner: winner
         });
@@ -105,11 +116,11 @@ class App extends React.Component {
             method: 'POST',
             dataType: 'json',
             data: {
-                xSchool: this.state.schools[0],
-                ySchool: this.state.schools[1]
+                franchises: this.state.franchises
             },
             success: (data) => {
-                this.startWrestling(data.winner);
+                // console.log(data.winner);
+                this.wrestle(data.winner);
             }
         });
     }
@@ -122,17 +133,17 @@ class App extends React.Component {
                 var wrestling = <img width="100%" src={this.state.winner.animation + '?' + new Date().getTime()} />;
             }
             if (!s.wrestling) {
-                var winner = <p style={this.styles.winner}>{capitalize(this.state.winner.name)} Wins!</p>;
+                var winner = <p style={this.styles.winner}>{this.state.winner.name} Wins!</p>;
             } 
         }
 
         return <div className="container">
             <div style={this.styles.logos} className="row">
                 <div className="col-md-4 col-md-offset-1">
-                    <College school={this.state.schools[1]} />
+                    <Franchise franchise={this.state.franchises[1]} />
                 </div>
                 <div className="col-md-4 col-md-offset-2">
-                    <College school={this.state.schools[0]} />
+                    <Franchise franchise={this.state.franchises[0]} />
                 </div>
             </div>
             <div className="row">
@@ -154,11 +165,6 @@ class App extends React.Component {
             </div>
         </div>;
     }
-}
-
-
-function capitalize(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 export default App;

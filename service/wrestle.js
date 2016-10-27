@@ -14,30 +14,38 @@ function getKarma(factors) {
 /**
  * Return the winner of the wrestling match. 
  * 
- * @param {string} xSchool - x school.  
+ * @param {string} xFranchise - x franchise.  
  * @param {objects} xFactors - factors determining if X school will win. 
- * @param {string} ySchool - y school.
+ * @param {string} yFranchise - y franchise.
  * @param {objects} yFactors - factors determining if Y school will win. 
  * 
- * @return {string} xSchool or ySchool
+ * @return {string} xFranchise or yFranchise
  */
-function runMatch(xSchool, xFactors, ySchool, yFactors) {
+function wrestle(xFranchise, xFactors, yFranchise, yFactors) {
   
-
   var xKarma = getKarma(xFactors);
   var yKarma = getKarma(yFactors);
 
   if (xKarma == yKarma) {
-    return runMatch(xSchool, xFactors, ySchool, yFactors);
+    return wrestle(xFranchise, xFactors, yFranchise, yFactors);
   }
 
   return new Promise(function(resolve, reject) {
+
+    var winner = xKarma > yKarma ? xFranchise : yFranchise;
+
+    // if (xFranchise == 'Star Wars') {
+    //   winner = yFranchise;
+    // } else if (yFranchise == 'Star Wars') {
+    //   winner = xFranchise;
+    // }
+
     resolve({
-      winner: xKarma > yKarma ? xSchool : ySchool
+      winner: winner
     });
   });
 }
 
 module.exports = {
-    runMatch: runMatch
+    wrestle: wrestle
 }

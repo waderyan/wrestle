@@ -19,10 +19,10 @@ server.use(function (req, res, next) {
 
 server.post('/wrestle', function(req, res, next) {
   var data = req.body;
-  var xSchool = data.xSchool;
-  var ySchool = data.ySchool;
+  var franchiseX = data.franchises[0];
+  var franchiseY = data.franchises[1];
 
-  return wrestle.runMatch(xSchool.name, xSchool.factors, ySchool.name, ySchool.factors)
+  return wrestle.wrestle(franchiseX.name, franchiseX.factors, franchiseY.name, franchiseY.factors)
     .then(function(winner) {
       res.send(winner);
     });
