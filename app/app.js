@@ -24,7 +24,7 @@ class App extends React.Component {
         super();
         this.state = {
             franchises: [
-                new FranchiseData('Star Wars', 'media/star_wars.png', 'media/wrestling_byu_wins.gif', 0, {
+                new FranchiseData('Star Wars', 'media/star_wars.png', 'media/star_wars_wins.gif', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
@@ -32,7 +32,7 @@ class App extends React.Component {
                         marginTop: '15%',
                         marginBottom: '15%'
                     }),
-                new FranchiseData('Star Trek', 'media/star_trek.jpg', 'media/wrestling_utah_wins.gif', 0, {
+                new FranchiseData('Star Trek', 'media/star_trek.jpg', 'media/star_trek_wins.gif', 0, {
                         bicep: 8,
                         wrist: 5,
                         savvy: 6
@@ -119,7 +119,7 @@ class App extends React.Component {
                 franchises: this.state.franchises
             },
             success: (data) => {
-                // console.log(data.winner);
+                // Rewrite
                 this.wrestle(data.winner);
             }
         });
