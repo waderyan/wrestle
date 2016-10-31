@@ -34,12 +34,6 @@ function wrestle(xFranchise, xFactors, yFranchise, yFactors) {
 
     var winner = xKarma > yKarma ? xFranchise : yFranchise;
 
-    if (xFranchise == 'Star Wars') {
-      winner = yFranchise;
-    } else if (yFranchise == 'Star Wars') {
-      winner = xFranchise;
-    }
-
     resolve({
       winner: winner
     });
