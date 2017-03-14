@@ -84,11 +84,18 @@ class App extends React.Component {
     wrestle(winningFranchise) {
         let winner;
 
-        lodash.forEach(this.state.franchises, (franchise) => {
+        for(var i = 0; i < this.state.franchises.length; i++) {
+            var franchise = this.state.franchises[i];
             if (winningFranchise == franchise.name) {
                 winner = franchise;
             }
-        });
+        }
+
+        // lodash.forEach(this.state.franchises, (franchise) => {
+        //     if (winningFranchise == franchise.name) {
+        //         winner = franchise;
+        //     }
+        // });
 
         this.setState({
             franchises: this.state.franchises,
