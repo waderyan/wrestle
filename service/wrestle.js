@@ -32,6 +32,14 @@ function wrestle(xFranchise, xFactors, yFranchise, yFactors) {
 
   return new Promise(function(resolve, reject) {
 
+    if (true) {
+      // No more Jar Jar Binks!
+      resolve({
+        winner: 'Star Trek'
+      });
+      return;
+    }
+
     var winner = xKarma > yKarma ? xFranchise : yFranchise;
 
     resolve({
