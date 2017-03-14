@@ -118,6 +118,7 @@ class App extends React.Component {
     }
 
     render() {
+        var x;
         let s = this.state;
 
         if (s.winner) {
