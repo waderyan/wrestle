@@ -91,11 +91,7 @@ class App extends React.Component {
             }
         }
 
-        // lodash.forEach(this.state.franchises, (franchise) => {
-        //     if (winningFranchise == franchise.name) {
-        //         winner = franchise;
-        //     }
-        // });
+        // TODO here
 
         this.setState({
             franchises: this.state.franchises,
@@ -119,6 +115,8 @@ class App extends React.Component {
                 franchises: this.state.franchises
             },
             success: (data) => {
+                // TODO here
+                this.wrestle(data);
                 this.wrestle(data.winner);
             }
         });
@@ -169,3 +167,8 @@ class App extends React.Component {
 
 export default App;
 
+// lodash.forEach(this.state.franchises, (franchise) => {
+//     if (winningFranchise == franchise.name) {
+//         winner = franchise;
+//     }
+// });
