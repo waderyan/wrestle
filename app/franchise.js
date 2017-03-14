@@ -21,7 +21,6 @@ class Franchise extends React.Component {
         return <div>
             <div className="row">
                 <div className="col-md-12">
-                    <p style={this.styles.wins}>Wins: {franchise.wins}</p>
                 </div>
             </div>
             <div className="row">
